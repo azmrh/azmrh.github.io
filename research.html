@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research | Abu Zawad M. R. Hossain</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="index.html">Abu Zawad M. R. Hossain</a><nav>
+<a href="index.html">About</a>
+<a href="publications.html">Publications</a>
+<a href="research.html" class="active">Research</a>
+<a href="presentations.html">Presentations</a>
+<a href="resume.html">Resume</a>
+<a href="projects.html">Projects</a>
+</nav></header>
+<main>
+  <section class="section">
+    <h2>Physiological Speed Control of Continuous-Flow LVADs</h2>
+    <p class="meta">Undergraduate thesis, BUET Mechanical Engineering, 2025&ndash;2026. Supervisor: Dr. Sheikh Mohammad Shavik.</p>
+    <p>Continuous-flow left ventricular assist devices usually run at one clinician-set speed. They cannot follow the body's changing demand during exertion, and they flatten the arterial pulse. I built a coupled seven-chamber cardiovascular model with baroreflex feedback and a HeartMate III-class pump in Python. I then designed and benchmarked five closed-loop speed controllers against a fixed-speed baseline.</p>
+    <h3>Controllers</h3>
+    <ul>
+      <li><strong>Fuzzy Adaptive Sliding-Mode Controller (FASMC).</strong> A first-order sliding surface with a boundary layer against chattering. A nine-rule Mamdani fuzzy system adapts the switching gain online. The surface is
+        $$s = \dot{e} + \lambda e$$
+        where $e$ is the cardiac-output tracking error.</li>
+      <li><strong>Synchronized Pulsatile Controller (SPC).</strong> A systole-locked sinusoidal speed overlay on an adaptive FASMC base. This is the original contribution of the thesis.</li>
+    </ul>
+    <h3>Results</h3>
+    <ul>
+      <li>FASMC cut cardiac-output tracking error by 81.6% (IAE) and 93.5% (ISE) against fixed speed.</li>
+      <li>Across a 50-patient virtual population, FASMC held an interquartile range below 0.02 L/min (p &lt; 0.001, Wilcoxon signed-rank).</li>
+      <li>SPC recovered a 12-fold higher pulsatility index at exercise, for a cardiac-output penalty of only 0.04 L/min.</li>
+    </ul>
+    <p><a href="files/undergrad_thesis.pdf">Undergraduate thesis (PDF)</a> &middot; <a href="files/becithcon_2026_slides.pdf">Conference slides (PDF)</a></p>
+  </section>
+
+  <section class="section">
+    <h2>Bimanual Mobile Manipulation of Large Deformable Objects</h2>
+    <p class="meta">M.Sc. research, University of Dhaka, 2026&ndash;present. Supervisor: Dr. Shamim Ahmed Deowan.</p>
+    <p>Most cloth-folding robots work on towels and shirts that fit inside the reach of one fixed dual-arm platform. A bedsheet is about two metres on each side, so folding it needs two partners who walk. This project uses two independently mobile manipulators that coordinate to unfold and fold a bedsheet-scale cloth.</p>
+    <p>I am building the pipeline in simulation first, with ROS 2, Gazebo, MoveIt 2 and MuJoCo for cloth dynamics, before sim-to-real transfer on hardware.</p>
+  </section>
+</main>
+<footer class="contact"><h2>Contact Me</h2><div class="icons">
+<a class="icon" href="https://www.linkedin.com/in/abu-zawad-mohammad-ridwan-hossain-171038228/" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+<a class="icon" href="https://github.com/azmrh" aria-label="GitHub" target="_blank" rel="noopener">GH</a>
+<a class="icon" href="mailto:abuzmridwanh@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+</div></footer>
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</body>
+</html>
