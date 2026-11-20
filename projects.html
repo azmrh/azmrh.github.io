@@ -18,6 +18,23 @@
 <main>
   <section class="section">
     <h2>Projects</h2>
+    <div class="card" id="magscrew">
+      <h3>Magnetically Driven Screw Capsule in a Colon Phantom</h3>
+      <p class="meta">Ongoing, 2026. Simulation stage. ROS 2 Jazzy, Python, Magpylib, RViz2, pytest.</p>
+      <p>A 6-DOF robot arm holds a permanent magnet above a soft tube that stands in for the colon. When the magnet spins, its rotating field turns a small capsule (about 13 mm &times; 30 mm) that carries a magnet and a spiral thread. The thread pushes on the tube wall, so the rotation becomes forward motion. A camera estimate of the capsule tells the arm where to move the magnet next.</p>
+      <p>I am building the system step by step, simulation first. A Python model library computes the magnet field with Magpylib, checks a point-dipole approximation against it, and gives the torque and the pull on the capsule against distance, plus a screw-speed model with slip. On top of it, a ROS 2 package runs the closed loop: an arm node that moves the magnet, a capsule simulator, a noisy camera, a smoothing filter and a proportional follow controller, with RViz2 views, CSV logs and replay animations.</p>
+      <ul>
+        <li>The model finds an operating band of 76&ndash;88 mm between the magnet and the capsule. In this band the turning torque has a 5&times; safety margin and the upward pull stays below a set limit.</li>
+        <li>With the follow controller off, the capsule outruns the magnet's reach and stalls after 32 mm. With it on, the capsule travels more than 18 cm in 20 s. The magnet trails by about 6.4 mm, close to the 6.2 mm that the P-controller lag and the filter delay predict.</li>
+        <li>In 10 simulated runs with different camera noise and screw slip (0.3 to 0.9), all 10 passed the 15 cm goal.</li>
+      </ul>
+      <div class="figs">
+        <figure class="wide"><img src="assets/magscrew/follow_on_off.gif" alt="Animation of two lanes: with follow off the capsule stops near the magnet; with follow on the magnet follows and the capsule moves far along the tube" width="800" height="336" loading="lazy"><figcaption>Follow off (top): the capsule stalls at the edge of the magnet's reach. Follow on (bottom): the magnet follows and the capsule keeps going.</figcaption></figure>
+        <figure><img src="assets/magscrew/band.png" alt="Two plots of torque and upward pull against distance, with the operating band from 76 to 88 mm shaded" width="1050" height="975" loading="lazy"><figcaption>Torque and pull against distance; the green band meets both limits.</figcaption></figure>
+        <figure><img src="assets/magscrew/ten_runs_traj.png" alt="Capsule position against time for ten simulated runs, colored by slip; all lines cross the 150 mm goal" width="1125" height="675" loading="lazy"><figcaption>Ten simulated closed-loop runs, colored by slip; all cross the 150 mm goal.</figcaption></figure>
+      </div>
+      <p>Next come the hardware steps: a Hall-sensor check of the field model, camera tracking, the arm path, and runs in the phantom. This is a feasibility study in a phantom. It makes no clinical claims, and the simulation leaves out friction changes, tube bends and camera dropouts, so I expect fewer successes on the real robot.</p>
+    </div>
     <div class="card">
       <h3>Cephalopod-Inspired Soft-Bodied Underwater Robot</h3>
       <p class="meta">ME 366, BUET, 2024. Four-member team.</p>
