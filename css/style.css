@@ -105,6 +105,8 @@ main { padding-bottom: 2.5rem; }
 }
 .figs figure { margin: 0; }
 .figs figure.wide { grid-column: 1 / -1; }
+/* full-row figure kept near its native size (for low-resolution images) */
+.figs figure.center { grid-column: 1 / -1; justify-self: center; width: 100%; }
 .figs img { display: block; width: 100%; height: auto; border: 1px solid #ddd; }
 .figs figcaption { color: #555; font-size: 0.88rem; margin-top: 0.35rem; }
 
